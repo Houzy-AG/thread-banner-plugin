@@ -1,0 +1,29 @@
+  <div class="hzy-thread-banner">
+    <div class="hzy-thread-banner__left">
+      {{#if bannerImage}}
+        <div class="hzy-thread-banner__img">
+          <img src="{{bannerImage}}"/>
+        </div>
+      {{/if}}
+    </div>
+    <div class="hzy-thread-banner__right">
+      {{#if bannerTitle}}
+        <div class="hzy-thread-banner__title">
+          {{bannerTitle}}
+        </div>
+      {{/if}}
+      {{#if bannerAdvert}}
+        <div class="hzy-thread-banner__advert">
+          {{bannerAdvert}}
+        </div>
+      {{/if}}
+      <div class="hzy-thread-banner__cta__spacer"></div>
+      {{#if bannerCta}}
+        {{#if bannerCtaText}}
+          <a href="{{bannerCta}}" class="hzy-thread-banner__cta">
+            <DButton @class="btn-default" @translatedLabel="{{bannerCtaText}}" />
+          </a>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
