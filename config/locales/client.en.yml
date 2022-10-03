@@ -12,3 +12,4 @@ en:
       action_add_new: "Add"
       action_save_changes: "Save changes"
       save_changes_failed: "Failed to save pending changes"
+      load_data_failed: "Load data failed"

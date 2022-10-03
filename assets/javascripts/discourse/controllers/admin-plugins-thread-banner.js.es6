@@ -7,8 +7,14 @@ export default Ember.Controller.extend({
   init: async function() {
     this._super();
 
-    const threadBannerData = await ajax("/thread-banner/config.json", {type: 'get'});
-    this.set('bannerItems', threadBannerData);
+    let threadBannerData = [];
+    try {
+      threadBannerData =  await ajax("/thread-banner/config.json", {type: 'get'}) || [];
+    } catch (e) {
+      this.dialog.alert({ message: I18n.t("thread_banner.load_data_failed") });
+      console.error(e);
+    }
+    this.set('bannerItems', threadBannerData || []);
   },
 
   actions: {
@@ -17,15 +23,15 @@ export default Ember.Controller.extend({
         return;
       }
 
-      const items = this.get('bannerItems');
-      this.set('bannerItems', item.filter(it => it !== item));
+      const items = this.get('bannerItems') || [];
+      this.set('bannerItems', items.filter(it => it !== item));
     },
     addNewBannerItem: function() {
       if (this.get('isSaving')) {
         return;
       }
 
-      const items = this.get('bannerItems');
+      const items = this.get('bannerItems') || [];
       this.set('bannerItems', [
         ...items,
         {

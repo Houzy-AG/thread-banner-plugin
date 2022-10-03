@@ -28,23 +28,23 @@ after_initialize do
     end
 
     require_dependency "application_controller"
+    require_dependency "admin/admin_controller"
 
     class ThreadBanner::ConfigController < ::ApplicationController
-        skip_before_action :verify_authenticity_token
         def index
-            puts(PluginStore.get(PLUGIN_NAME, "config"))
             render json: PluginStore.get(PLUGIN_NAME, "config")
         end
+    end
 
+    class ThreadBanner::ConfigAdminController < ::Admin::AdminController
         def update
-            puts(request.body.read)
             PluginStore.set(PLUGIN_NAME, "config", request.body.read)
         end
     end
 
     ThreadBanner::Engine.routes.draw do
         get "/config" => "config#index"
-        post "/config" => "config#update"
+        post "/config" => "config_admin#update"
     end
 
     Discourse::Application.routes.append do
