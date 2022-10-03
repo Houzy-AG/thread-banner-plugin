@@ -15,6 +15,7 @@ end
 enabled_site_setting :plugin_name_enabled
 
 register_asset 'stylesheets/thread-banner.scss'
+register_asset 'stylesheets/thread-banner-admin.scss'
 
 PLUGIN_NAME = "thread_banner".freeze
 

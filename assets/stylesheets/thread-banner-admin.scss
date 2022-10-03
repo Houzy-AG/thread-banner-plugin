@@ -1,0 +1,42 @@
+.hzy-thread-banner__admin {
+    .hzy-thread-banner__admin__card {
+        border: 1px solid;
+        border-radius: 4px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        margin-bottom: 24px;
+    }
+
+    .hzy-thread-banner__admin__fields-line {
+        display: flex;
+        margin: -12px;
+
+        .hzy-thread-banner__admin__field {
+            flex: 1;
+            margin: 12px;
+        }
+    }
+
+    .control-group {
+        width: 100%;
+        min-width: 0;
+
+        input {
+            width: 100%;
+            min-width: 0;
+        }
+    }
+
+    .hzy-thread-banner__admin__actions {
+        display: flex;
+        justify-content: flex-end;
+        margin: -12px;
+
+        .action-button {
+            margin: 12px;
+        }
+    }
+}

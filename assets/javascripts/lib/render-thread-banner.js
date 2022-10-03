@@ -4,9 +4,16 @@ export const renderThreadBanner = async (component,
                                          model) => {
   component.set('showBanner', false);
   const category = model.get('category');
+  const categoryName = category?.name;
 
   const bannersListByCategory = await ajax("/thread-banner/config.json", {type: 'get'});
-  const bannerData = bannersListByCategory.find(banner => banner.categoryName === category?.name);
+  const bannerData = bannersListByCategory.find(banner => {
+    banner.categories = !banner.categories ? "" : banner.categories;
+    const categoriesList = banner.categories.split(",")
+      .map(item => item.trim());
+
+    return categoriesList.some(category => category === categoryName);
+  });
   if (!bannerData) {
     return;
   }

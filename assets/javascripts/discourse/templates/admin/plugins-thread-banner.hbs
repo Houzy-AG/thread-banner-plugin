@@ -1,9 +1,46 @@
-{{#if tentacleVisible}}
-  <div class='tentacle'>
-    <img src="https://eviltrout.com/images/tentacle.gif">
-  </div>
-{{/if}}
+<div class="hzy-thread-banner__admin">
+  {{#each bannerItems as |item|}}
+    <div class="hzy-thread-banner__admin__card">
+      <div class="hzy-thread-banner__admin__fields-line">
+        <div class="control-group hzy-thread-banner__admin__field">
+          <label for="bannerTitle">{{i18n "thread_banner.add_title"}}</label>
+          <TextField @name="bannerTitle" @value={{item.bannerTitle}}/>
+        </div>
 
-<div class='buttons'>
-  {{d-button label="thread_banner.show" action="showTentacle" icon="eye"}}
+        <div class="control-group hzy-thread-banner__admin__field">
+          <label for="categories">{{i18n "thread_banner.category"}}</label>
+          <TextField @name="categories" @value={{item.categories}}/>
+        </div>
+      </div>
+
+      <div class="control-group hzy-thread-banner__admin__field">
+        <label for="bannerAdvert">{{i18n "thread_banner.advert_text"}}</label>
+        <TextField @name="bannerAdvert" @value={{item.bannerAdvert}}/>
+      </div>
+      <div class="control-group">
+        <label for="bannerImage">{{i18n "thread_banner.bannerImage"}}</label>
+        <TextField @name="bannerImage" @value={{item.bannerImage}}/>
+      </div>
+
+      <div class="hzy-thread-banner__admin__fields-line">
+        <div class="control-group hzy-thread-banner__admin__field">
+          <label for="bannerCtaText">{{i18n "thread_banner.cta_link_text"}}</label>
+          <TextField @name="bannerCtaText" @value={{item.bannerCtaText}}/>
+        </div>
+        <div class="control-group hzy-thread-banner__admin__field">
+          <label for="bannerCta">{{i18n "thread_banner.cta_link_text"}}</label>
+          <TextField @name="bannerCta" @value={{item.bannerCta}}/>
+        </div>
+      </div>
+
+      <div class="hzy-thread-banner__admin__actions">
+        <DButton @disabled={{isSaving}} @class="action-button btn-danger" @icon="far-trash-alt" {{action "removeBannerItem" item}} @label="thread_banner.action_remove"/>
+      </div>
+    </div>
+  {{/each}}
+
+  <div class="hzy-thread-banner__admin__actions">
+    <DButton @disabled={{isSaving}} @class="action-button btn-primary"  @icon="plus" {{action "addNewBannerItem"}} @label="thread_banner.action_add_new"/>
+    <DButton @disabled={{isSaving}} @class="action-button btn-primary" @icon="sync" {{action "saveChanges"}} @label="thread_banner.action_save_changes"/>
+  </div>
 </div>
