@@ -2,4 +2,13 @@ en:
   js:
     thread_banner:
       title: "Thread Banner"
-      show: "Show Purple Tentacle"
+      bannerImage: "Image link"
+      add_title: "Title"
+      category: "Categories (Coma separated values list)"
+      advert_text: "Advert text"
+      cta_link: "Call to action link"
+      cta_link_text: "Call to action link text"
+      action_remove: "Remove"
+      action_add_new: "Add"
+      action_save_changes: "Save changes"
+      save_changes_failed: "Failed to save pending changes"
