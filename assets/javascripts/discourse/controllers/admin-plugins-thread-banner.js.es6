@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     this._super();
 
     const threadBannerData = await ajax("/thread-banner/config.json", {type: 'get'});
-    this.set('bannerItems', threadBannerData);
+    this.set('bannerItems', threadBannerData || []);
   },
 
   actions: {
@@ -40,6 +40,29 @@ export default Ember.Controller.extend({
     },
     saveChanges: async function() {
       this.set('isSaving', true);
+
+
+      for (const banner of this.get('bannerItems')) {
+        if (!(banner.bannerImage instanceof File)) {
+          continue;
+        }
+
+        const formData = new FormData();
+        formData.append("type","card_background")
+        formData.append("synchronous","true")
+        formData.append("file", banner.bannerImage)
+        const uploadResult = await ajax("/uploads.json", {
+          type: "POST",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+        });
+
+        uploadResult.name = banner.bannerImage.name;
+        banner.bannerImage = uploadResult;
+      }
+
       try {
         await ajax("/thread-banner/config.json", {
           type: "POST",
