@@ -22,5 +22,6 @@ export const renderThreadBanner = async (component,
   component.set('bannerAdvert', bannerData.bannerAdvert);
   component.set('bannerCtaText', bannerData.bannerCtaText);
   component.set('bannerCta', bannerData.bannerCta);
+  component.set('linkTarget', bannerData.openLinkInNewTab ? '_blank' : '_self');
   component.set('showBanner', true);
 }

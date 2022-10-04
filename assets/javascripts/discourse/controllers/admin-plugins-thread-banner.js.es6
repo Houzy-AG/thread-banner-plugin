@@ -44,6 +44,9 @@ export default Ember.Controller.extend({
         }
       ]);
     },
+    toggleOpenLinkInNewTab: function(item, eventData) {
+      item.openLinkInNewTab = eventData.target.checked;
+    },
     saveChanges: async function() {
       this.set('isSaving', true);
       try {

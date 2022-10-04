@@ -54,8 +54,10 @@
 
     .hzy-thread-banner__cta {
         margin-top: 12px;
+        display: flex;
 
         button {
+            pointer-events: none;
             font-size: 16px;
             font-weight: 600;
         }

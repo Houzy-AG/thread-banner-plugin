@@ -20,7 +20,7 @@
       <div class="hzy-thread-banner__cta__spacer"></div>
       {{#if bannerCta}}
         {{#if bannerCtaText}}
-          <a href="{{bannerCta}}" class="hzy-thread-banner__cta">
+          <a href="{{bannerCta}}" class="hzy-thread-banner__cta" target={{linkTarget}}>
             <DButton @class="btn-default" @translatedLabel="{{bannerCtaText}}" />
           </a>
         {{/if}}

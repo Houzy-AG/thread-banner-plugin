@@ -32,6 +32,14 @@
           <TextField @name="bannerCta" @value={{item.bannerCta}}/>
         </div>
       </div>
+    <div class="hzy-thread-banner__admin__fields-line">
+      <div class="control-group hzy-thread-banner__admin__field">
+        <div class="hzy-thread-banner__admin__checkbox-group">
+          <label for="openLinkInNewTab">{{i18n "thread_banner.open_link_in_new_tab"}}</label>
+          <Input @name="openLinkInNewTab" @type="checkbox" @checked={{item.openLinkInNewTab}} @click={{action "toggleOpenLinkInNewTab" item}}/>
+        </div>
+      </div>
+    </div>
 
       <div class="hzy-thread-banner__admin__actions">
         <DButton @disabled={{isSaving}} @class="action-button btn-danger" @icon="far-trash-alt" {{action "removeBannerItem" item}} @label="thread_banner.action_remove"/>

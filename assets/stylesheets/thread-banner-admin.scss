@@ -39,4 +39,17 @@
             margin: 12px;
         }
     }
+
+    .hzy-thread-banner__admin__checkbox-group {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            width: 16px;
+        }
+    }
+
+    input {
+        z-index: 1;
+    }
 }

@@ -12,4 +12,5 @@ en:
       action_add_new: "Add"
       action_save_changes: "Save changes"
       save_changes_failed: "Failed to save pending changes"
+      open_link_in_new_tab: "Open cta link in new tab"
       load_data_failed: "Load data failed"
