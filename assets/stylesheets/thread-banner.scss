@@ -7,6 +7,14 @@
     border-radius: 4px;
     background-color: #f5f5f5;
 
+    &.hzy-thread-banner-above-footer-buttons {
+        margin-bottom: 24px;
+    }
+
+    &.hzy-thread-banner-above-suggested {
+        margin-top: 24px;
+    }
+
     .hzy-thread-banner__left {
         flex: 1;
         position: relative;
