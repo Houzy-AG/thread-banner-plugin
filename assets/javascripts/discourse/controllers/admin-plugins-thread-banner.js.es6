@@ -1,6 +1,8 @@
 import { ajax } from "discourse/lib/ajax";
-import { inject as service } from "@ember/service";
-import Controller from "@ember/controller";
+import { service } from '@ember/service';
+import Controller, {
+  inject as controller
+} from '@ember/controller';
 
 export default Controller.extend({
   dialog: service(),
