@@ -1,7 +1,8 @@
 import { ajax } from "discourse/lib/ajax";
 import { inject as service } from "@ember/service";
+import Controller from "@ember/controller";
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   dialog: service(),
 
   init: async function() {
