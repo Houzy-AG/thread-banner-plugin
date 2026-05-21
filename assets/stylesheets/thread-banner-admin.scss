@@ -1,55 +1,54 @@
 .hzy-thread-banner__admin {
-    .hzy-thread-banner__admin__card {
-        border: 1px solid;
-        border-radius: 4px;
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
+  .hzy-thread-banner__admin__card {
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 24px;
+  }
 
-        margin-bottom: 24px;
+  .hzy-thread-banner__admin__fields-line {
+    display: flex;
+    margin: -12px;
+
+    .hzy-thread-banner__admin__field {
+      flex: 1;
+      margin: 12px;
     }
+  }
 
-    .hzy-thread-banner__admin__fields-line {
-        display: flex;
-        margin: -12px;
-
-        .hzy-thread-banner__admin__field {
-            flex: 1;
-            margin: 12px;
-        }
-    }
-
-    .control-group {
-        width: 100%;
-        min-width: 0;
-
-        input {
-            width: 100%;
-            min-width: 0;
-        }
-    }
-
-    .hzy-thread-banner__admin__actions {
-        display: flex;
-        justify-content: flex-end;
-        margin: -12px;
-
-        .action-button {
-            margin: 12px;
-        }
-    }
-
-    .hzy-thread-banner__admin__checkbox-group {
-        display: flex;
-        flex-direction: column;
-
-        input {
-            width: 16px;
-        }
-    }
+  .control-group {
+    width: 100%;
+    min-width: 0;
 
     input {
-        z-index: 1;
+      width: 100%;
+      min-width: 0;
     }
+  }
+
+  .hzy-thread-banner__admin__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: -12px;
+
+    .action-button {
+      margin: 12px;
+    }
+  }
+
+  .hzy-thread-banner__admin__checkbox-group {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 16px;
+    }
+  }
+
+  input {
+    z-index: 1;
+  }
 }

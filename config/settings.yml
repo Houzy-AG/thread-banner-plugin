@@ -1,4 +1,4 @@
 plugins:
-  plugin_name_enabled:
+  thread_banner_enabled:
     default: true
     client: true

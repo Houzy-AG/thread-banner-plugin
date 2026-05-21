@@ -1,1 +1,3 @@
 en:
+  site_settings:
+    thread_banner_enabled: "Enable the thread banner plugin."

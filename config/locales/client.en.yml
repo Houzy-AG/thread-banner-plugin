@@ -1,10 +1,10 @@
 en:
-  js:
+  admin_js:
     thread_banner:
       title: "Thread Banner"
       bannerImage: "Image link"
       add_title: "Title"
-      category: "Categories (Coma separated values list)"
+      category: "Categories (comma-separated list)"
       advert_text: "Advert text"
       cta_link: "Call to action link"
       cta_link_text: "Call to action link text"
@@ -12,5 +12,6 @@ en:
       action_add_new: "Add"
       action_save_changes: "Save changes"
       save_changes_failed: "Failed to save pending changes"
-      open_link_in_new_tab: "Open cta link in new tab"
-      load_data_failed: "Load data failed"
+      save_changes_success: "Changes saved"
+      open_link_in_new_tab: "Open CTA link in new tab"
+      load_data_failed: "Failed to load banner data"

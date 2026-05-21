@@ -1,10 +1,28 @@
 {
   "name": "thread-banner",
-  "version": "0.0.1",
-  "repository": "TODO",
-  "author": "Discourse",
+  "version": "0.2.0",
+  "private": true,
   "license": "MIT",
   "devDependencies": {
-    "eslint-config-discourse": "^3.1.0"
-  }
+    "@discourse/lint-configs": "3.0.1",
+    "concurrently": "^9.2.1",
+    "eslint": "9.39.2",
+    "prettier": "3.8.1",
+    "stylelint": "17.5.0"
+  },
+  "scripts": {
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
+    "lint:css": "stylelint 'assets/stylesheets/**/*.scss' --allow-empty-input",
+    "lint:css:fix": "stylelint 'assets/stylesheets/**/*.scss' --fix --allow-empty-input",
+    "lint:js": "eslint {admin/assets,assets,test}/javascripts --cache --no-error-on-unmatched-pattern",
+    "lint:js:fix": "eslint {admin/assets,assets,test}/javascripts --fix --no-error-on-unmatched-pattern",
+    "lint:prettier": "prettier 'assets/stylesheets/**/*.scss' '{admin/assets,assets,test}/javascripts/**/*.{js,gjs}' --check --no-error-on-unmatched-pattern",
+    "lint:prettier:fix": "prettier 'assets/stylesheets/**/*.scss' '{admin/assets,assets,test}/javascripts/**/*.{js,gjs}' -w --no-error-on-unmatched-pattern"
+  },
+  "engines": {
+    "node": ">= 22",
+    "pnpm": "^10"
+  },
+  "packageManager": "pnpm@10.28.0"
 }
