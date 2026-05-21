@@ -22,6 +22,6 @@ require_relative "lib/thread_banner/config_store"
 require_relative "lib/thread_banner/migrations"
 
 after_initialize do
-  Migrations.run!
+  ::ThreadBanner::Migrations.run!
   add_admin_route("thread_banner.title", "thread-banner", { use_new_show_route: true })
 end
