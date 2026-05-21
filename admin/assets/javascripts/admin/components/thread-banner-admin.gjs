@@ -2,10 +2,10 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { Input } from "@ember/component";
 import { fn } from "@ember/helper";
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
-import DButton from "discourse/ui-kit/d-button";
 import { i18n } from "discourse-i18n";
 
 const BLANK_BANNER = {
@@ -18,6 +18,12 @@ const BLANK_BANNER = {
   openLinkInNewTab: false,
 };
 
+// Admin editor for the banner list. Loads the stored config, lets staff
+// add/remove/edit banner entries in memory, and saves the whole list back.
+//
+// Uses plain <button> elements (core `.btn` classes) rather than the DButton
+// component on purpose: DButton's import path has moved between Discourse
+// versions, and a plain button has no such version coupling.
 export default class ThreadBannerAdmin extends Component {
   @service dialog;
 
@@ -114,32 +120,35 @@ export default class ThreadBannerAdmin extends Component {
             </div>
 
             <div class="hzy-thread-banner__admin__actions">
-              <DButton
-                @action={{fn this.removeBanner item}}
-                @label="thread_banner.action_remove"
-                @icon="trash-can"
-                @disabled={{this.saving}}
-                class="action-button btn-danger"
-              />
+              <button
+                type="button"
+                class="btn btn-danger action-button"
+                disabled={{this.saving}}
+                {{on "click" (fn this.removeBanner item)}}
+              >
+                {{i18n "thread_banner.action_remove"}}
+              </button>
             </div>
           </div>
         {{/each}}
 
         <div class="hzy-thread-banner__admin__actions">
-          <DButton
-            @action={{this.addBanner}}
-            @label="thread_banner.action_add_new"
-            @icon="plus"
-            @disabled={{this.saving}}
-            class="action-button btn-primary"
-          />
-          <DButton
-            @action={{this.save}}
-            @label="thread_banner.action_save_changes"
-            @icon="check"
-            @disabled={{this.saving}}
-            class="action-button btn-primary"
-          />
+          <button
+            type="button"
+            class="btn btn-primary action-button"
+            disabled={{this.saving}}
+            {{on "click" this.addBanner}}
+          >
+            {{i18n "thread_banner.action_add_new"}}
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary action-button"
+            disabled={{this.saving}}
+            {{on "click" this.save}}
+          >
+            {{i18n "thread_banner.action_save_changes"}}
+          </button>
         </div>
       {{/unless}}
     </div>

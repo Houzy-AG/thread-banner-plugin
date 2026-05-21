@@ -11,7 +11,7 @@ export default {
       return;
     }
 
-    withPluginApi("1.1.0", (api) => {
+    withPluginApi((api) => {
       api.addAdminPluginConfigurationNav("thread-banner", [
         {
           label: "thread_banner.banners",
