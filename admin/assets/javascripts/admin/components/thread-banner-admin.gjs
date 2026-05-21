@@ -38,7 +38,8 @@ export default class ThreadBannerAdmin extends Component {
 
   async loadBanners() {
     try {
-      this.bannerItems = (await ajax("/thread-banner/config.json")) || [];
+      const data = await ajax("/thread-banner/config.json");
+      this.bannerItems = Array.isArray(data) ? data : [];
     } catch {
       this.dialog.alert(i18n("thread_banner.load_data_failed"));
     } finally {
