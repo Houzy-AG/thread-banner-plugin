@@ -1,7 +1,11 @@
 en:
+  js:
+    thread_banner:
+      banners: "Banners"
   admin_js:
     thread_banner:
       title: "Thread Banner"
+      banners: "Banners"
       bannerImage: "Image link"
       add_title: "Title"
       category: "Categories (comma-separated list)"

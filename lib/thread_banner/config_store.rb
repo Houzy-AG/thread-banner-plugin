@@ -19,20 +19,23 @@ module ::ThreadBanner
 
     def normalize(data)
       return [] if data.blank?
-      return data if data.is_a?(Array)
 
-      if data.is_a?(String)
-        parsed = JSON.parse(data)
-        return parsed if parsed.is_a?(Array)
-      end
+      data = JSON.parse(data) if data.is_a?(String)
+      # Legacy versions of the plugin stored the banner array wrapped under a
+      # "config" key (e.g. {"config" => [...]}). Unwrap it so callers always
+      # receive a plain array.
+      data = data["config"] if data.is_a?(Hash)
 
-      []
+      data.is_a?(Array) ? data : []
     rescue JSON::ParserError
       []
     end
 
+    # One-time self-healing migration: if the stored value was a legacy string
+    # or wrapped hash, rewrite it as a plain array so later reads skip parsing.
     def persist_parsed_config(raw, banners)
-      return unless raw.is_a?(String) && banners.is_a?(Array)
+      return unless banners.is_a?(Array)
+      return if raw.is_a?(Array)
 
       PluginStore.set(STORE_NAMESPACE, CONFIG_KEY, banners)
     end
