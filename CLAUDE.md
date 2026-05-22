@@ -81,6 +81,15 @@ A banner item: `bannerTitle`, `categories` (comma-separated), `bannerAdvert`, `b
 
 ## Conventions & gotchas
 
+- **Topic banners missing / empty API:** The topic and admin UIs expect a banner **array** from
+  `GET /thread-banner/config.json`. Legacy storage and API used `{"config":[...]}`. Use
+  `parse-banner-config.js` on the client. An early rewrite could wipe PluginStore when
+  `normalize` failed on wrapped hashes and `persist_parsed_config` wrote `[]`; restore via console
+  (see README). Category matching uses **category name** strings, not IDs.
+- **Greyed-out Settings button:** Discourse sets `has_only_enabled_setting` when `config/settings.yml`
+  contains only `thread_banner_enabled`. Core then disables the plugin-list Settings button even if
+  `add_admin_route(..., use_new_show_route: true)` is set. Keep a second setting (e.g. hidden
+  `thread_banner_admin_configured`) so the button links to the Banners editor.
 - i18n: admin-bundle code (everything under `admin/assets/` and the admin route label) resolves
   keys under `admin_js:` in `config/locales/client.en.yml`. The topic-display side uses no i18n.
 - CSS class names (`hzy-thread-banner*`) are load-bearing for the two SCSS files in

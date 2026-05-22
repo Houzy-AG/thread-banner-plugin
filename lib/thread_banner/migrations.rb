@@ -4,11 +4,13 @@ module ::ThreadBanner
   module Migrations
     LEGACY_SITE_SETTING = "plugin_name_enabled"
     SITE_SETTING_MIGRATION_KEY = "migrated_plugin_name_enabled"
+    CONFIG_FORMAT_MIGRATION_KEY = "repaired_config_storage_format"
 
     module_function
 
     def run!
       migrate_legacy_site_setting!
+      repair_config_storage_format!
     rescue ActiveRecord::ActiveRecordError
       # The database (or its tables) may not exist yet: after_initialize also
       # runs during `rake db:create` and the first `db:migrate`. This migration
@@ -27,6 +29,13 @@ module ::ThreadBanner
       end
 
       PluginStore.set(STORE_NAMESPACE, SITE_SETTING_MIGRATION_KEY, true)
+    end
+
+    def repair_config_storage_format!
+      return if PluginStore.get(STORE_NAMESPACE, CONFIG_FORMAT_MIGRATION_KEY)
+
+      ConfigStore.repair_storage!
+      PluginStore.set(STORE_NAMESPACE, CONFIG_FORMAT_MIGRATION_KEY, true)
     end
   end
 end

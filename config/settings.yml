@@ -2,3 +2,10 @@ plugins:
   thread_banner_enabled:
     default: true
     client: true
+  # Discourse disables the plugin "Settings" button when a plugin has only the
+  # enabled toggle (has_only_enabled_setting). A second setting unlocks the
+  # custom admin show route (Banners editor). Not used at runtime.
+  thread_banner_admin_configured:
+    type: bool
+    default: false
+    hidden: true

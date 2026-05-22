@@ -6,14 +6,14 @@ module ::ThreadBanner
 
     module_function
 
-    # Pure read -- never writes. (Self-healing the stored value here would mean
-    # a database write on every GET, including anonymous topic-page requests.)
     def read
       normalize(PluginStore.get(STORE_NAMESPACE, CONFIG_KEY))
     end
 
     def write(banners)
-      PluginStore.set(STORE_NAMESPACE, CONFIG_KEY, banners)
+      list = normalize(banners)
+      PluginStore.set(STORE_NAMESPACE, CONFIG_KEY, list)
+      list
     end
 
     # Accepts the value stored by any past version of the plugin -- a plain
@@ -23,11 +23,26 @@ module ::ThreadBanner
       return [] if data.blank?
 
       data = JSON.parse(data) if data.is_a?(String)
-      data = data["config"] if data.is_a?(Hash)
+
+      if data.is_a?(Hash)
+        data = data["config"] || data[:config] || data["banners"] || data[:banners]
+      end
 
       data.is_a?(Array) ? data : []
     rescue JSON::ParserError
       []
+    end
+
+    # Rewrites legacy PluginStore shapes to a plain array, but never overwrites
+    # with an empty list (avoids repeating the v0.2.0 data-loss bug).
+    def repair_storage!
+      raw = PluginStore.get(STORE_NAMESPACE, CONFIG_KEY)
+      banners = normalize(raw)
+      return banners if banners.blank?
+      return banners if raw.is_a?(Array)
+
+      PluginStore.set(STORE_NAMESPACE, CONFIG_KEY, banners)
+      banners
     end
   end
 end

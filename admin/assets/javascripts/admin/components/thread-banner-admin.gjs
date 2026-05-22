@@ -6,6 +6,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
+import parseBannerConfig from "discourse/plugins/thread-banner/discourse/lib/parse-banner-config";
 import { i18n } from "discourse-i18n";
 
 const BLANK_BANNER = {
@@ -39,7 +40,7 @@ export default class ThreadBannerAdmin extends Component {
   async loadBanners() {
     try {
       const data = await ajax("/thread-banner/config.json");
-      this.bannerItems = Array.isArray(data) ? data : [];
+      this.bannerItems = parseBannerConfig(data);
     } catch {
       this.dialog.alert(i18n("thread_banner.load_data_failed"));
     } finally {

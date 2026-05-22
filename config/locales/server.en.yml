@@ -1,3 +1,4 @@
 en:
   site_settings:
     thread_banner_enabled: "Enable the thread banner plugin."
+    thread_banner_admin_configured: "Internal flag; not shown in admin UI."
