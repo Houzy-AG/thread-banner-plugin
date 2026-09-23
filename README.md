@@ -9,7 +9,7 @@ above the suggested topics for anonymous visitors.
 
 ## Requirements
 
-Discourse **2026.1.0** or newer (calendar versioning). Houzy runs **v2026.1.4**. Older cores
+Discourse **2026.1.0** or newer (calendar versioning). Houzy runs **v2026.7.3**. Older cores
 are pinned to the pre-rewrite plugin commit via `.discourse-compatibility`.
 
 ## Installation

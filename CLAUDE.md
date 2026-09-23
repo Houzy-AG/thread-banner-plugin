@@ -10,7 +10,7 @@ as a JSON array in `PluginStore`; on each topic the frontend picks the banner wh
 list matches the topic's category.
 
 This plugin was modernized (v0.2.0) from pre-2022 Discourse conventions to the current
-`.gjs` / Glimmer / Rails-7 plugin layout. Targets Discourse **2026.1+** (Houzy: **v2026.1.4**);
+`.gjs` / Glimmer / Rails-7 plugin layout. Targets Discourse **2026.1+** (Houzy: **v2026.7.3**);
 older cores use the pinned commit in `.discourse-compatibility`.
 
 ## Commands
